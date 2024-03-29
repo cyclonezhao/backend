@@ -2,3 +2,19 @@ server:
   port: 19211
   servlet:
     context-path:
+spring:
+  application:
+    name: auth # 应用名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @spring.cloud.nacos.server-addr@ # 服务注册地址
+        # 命名空间
+        namespace: @spring.cloud.nacos.discovery.namespace@
+        ip: @spring.cloud.nacos.ip@
+      config:
+        server-addr: @spring.cloud.nacos.server-addr@  # 配置中心地址
+        shared-configs:  # 共享配置
+          - application.@spring.cloud.nacos.config.file-extension@
+        # 命名空间
+        namespace: @spring.cloud.nacos.config.namespace@

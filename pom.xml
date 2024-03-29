@@ -23,6 +23,13 @@
         <spring.boot.version>2.5.5</spring.boot.version>
         <spring.cloud.version>2020.0.2</spring.cloud.version>
         <spring.cloud.alibaba.version>2021.1</spring.cloud.alibaba.version>
+        <spring.cloud.nacos.ip>172.0.0.1</spring.cloud.nacos.ip>
+        <spring.cloud.nacos.server-addr>${spring.cloud.nacos.ip}:8848</spring.cloud.nacos.server-addr>
+        <spring.cloud.nacos.username>nacos</spring.cloud.nacos.username>
+        <spring.cloud.nacos.password>nacos</spring.cloud.nacos.password>
+        <spring.cloud.nacos.discovery.namespace>dev</spring.cloud.nacos.discovery.namespace>
+        <spring.cloud.nacos.config.namespace>dev</spring.cloud.nacos.config.namespace>
+        <spring.cloud.nacos.config.file-extension>yml</spring.cloud.nacos.config.file-extension>
     </properties>
 
     <dependencyManagement>
