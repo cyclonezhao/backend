@@ -1,4 +1,4 @@
 server:
-  port: 9211
+  port: 19211
   servlet:
     context-path:
