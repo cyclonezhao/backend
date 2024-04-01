@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>${spring.boot.version}</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>${spring.boot.version}</version>-->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--    </parent>-->
 
     <groupId>org.example</groupId>
     <artifactId>backend</artifactId>
@@ -21,6 +21,7 @@
     <properties>
         <version>1.0-SNAPSHOT</version>
         <spring.boot.version>2.5.5</spring.boot.version>
+        <spring.plugin.version>2.0.0.RELEASE</spring.plugin.version>
         <spring.cloud.version>2020.0.2</spring.cloud.version>
         <spring.cloud.alibaba.version>2021.1</spring.cloud.alibaba.version>
         <spring.cloud.nacos.ip>172.0.0.1</spring.cloud.nacos.ip>
@@ -34,6 +35,23 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.plugin</groupId>
+                <artifactId>spring-plugin-core</artifactId>
+                <version>${spring.plugin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.plugin</groupId>
+                <artifactId>spring-plugin-metadata</artifactId>
+                <version>${spring.plugin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--Spring Cloud & Alibaba 相关依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -51,4 +69,22 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.ftl</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
