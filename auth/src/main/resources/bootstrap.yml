@@ -16,5 +16,6 @@ spring:
         server-addr: @spring.cloud.nacos.server-addr@  # 配置中心地址
         shared-configs:  # 共享配置
           - application.@spring.cloud.nacos.config.file-extension@
+          - ${spring.application.name}.@spring.cloud.nacos.config.file-extension@
         # 命名空间
         namespace: @spring.cloud.nacos.config.namespace@
