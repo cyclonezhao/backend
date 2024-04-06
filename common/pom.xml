@@ -5,14 +5,16 @@
     <parent>
         <artifactId>backend</artifactId>
         <groupId>org.example</groupId>
-        <version>${version}</version>
+        <version>${root.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>trd</artifactId>
+    <artifactId>common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>trd-redistemplate</module>
+        <module>common-redistemplate</module>
+        <module>common-mybatis</module>
+        <module>common-base</module>
     </modules>
 
 </project>

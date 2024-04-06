@@ -5,7 +5,7 @@
     <parent>
         <artifactId>backend</artifactId>
         <groupId>org.example</groupId>
-        <version>${version}</version>
+        <version>${root.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,8 +14,8 @@
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>trd-redistemplate</artifactId>
-            <version>${version}</version>
+            <artifactId>common-redistemplate</artifactId>
+            <version>${root.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
