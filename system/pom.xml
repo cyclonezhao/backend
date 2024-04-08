@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>system-basedata</module>
+        <module>system-gateway</module>
     </modules>
 
     <dependencies>
