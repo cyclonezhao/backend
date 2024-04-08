@@ -5,7 +5,7 @@
     <parent>
         <artifactId>common</artifactId>
         <groupId>org.example</groupId>
-        <version>${root.version}</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>common-base</artifactId>
-            <version>${root.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

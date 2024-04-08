@@ -5,7 +5,7 @@
     <parent>
         <artifactId>system</artifactId>
         <groupId>org.example</groupId>
-        <version>${root.version}</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -19,12 +19,12 @@
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>common-base</artifactId>
-            <version>${root.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>common-mybatis</artifactId>
-            <version>${root.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

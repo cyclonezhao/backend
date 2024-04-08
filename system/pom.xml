@@ -5,7 +5,7 @@
     <parent>
         <artifactId>backend</artifactId>
         <groupId>org.example</groupId>
-        <version>${root.version}</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

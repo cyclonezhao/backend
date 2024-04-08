@@ -5,7 +5,7 @@
     <parent>
         <artifactId>backend</artifactId>
         <groupId>org.example</groupId>
-        <version>${root.version}</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,7 +15,7 @@
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>common-redistemplate</artifactId>
-            <version>${root.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

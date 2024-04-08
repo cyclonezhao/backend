@@ -13,7 +13,7 @@
     <groupId>org.example</groupId>
     <artifactId>backend</artifactId>
     <packaging>pom</packaging>
-    <version>${root.version}</version>
+    <version>${revision}</version>
     <modules>
         <module>auth</module>
         <module>common</module>
@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <root.version>1.0-SNAPSHOT</root.version>
+        <revision>1.0-SNAPSHOT</revision>
         <spring.boot.version>2.5.5</spring.boot.version>
         <spring.plugin.version>2.0.0.RELEASE</spring.plugin.version>
         <spring.cloud.version>2020.0.2</spring.cloud.version>
