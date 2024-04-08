@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <jwt.version>3.4.0</jwt.version>
         <spring.boot.version>2.5.5</spring.boot.version>
         <spring.plugin.version>2.0.0.RELEASE</spring.plugin.version>
         <spring.cloud.version>2020.0.2</spring.cloud.version>
@@ -74,6 +75,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
     <build>
         <resources>
             <resource>

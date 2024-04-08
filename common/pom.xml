@@ -15,6 +15,7 @@
         <module>common-redistemplate</module>
         <module>common-mybatis</module>
         <module>common-base</module>
+        <module>common-security</module>
     </modules>
 
 </project>
