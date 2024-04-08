@@ -5,8 +5,10 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.backend.common.core.CommonException;
 import com.backend.common.redis.RedisHelper;
 import com.backend.common.security.constant.CacheName;
+import com.backend.common.security.constant.ErrorConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -48,7 +50,7 @@ public class TokenHelper {
             redisHelper.expire ( CacheName.USER_CACHE_ONLINE_USERS, token, EXPIRE_TIME );
             return true;
         } catch (Exception e) {
-//            log.error ( ErrorConstants.LOGIN_ERROR_INCORRECT );
+            log.error(ErrorConstant.LOGIN_ERROR_INCORRECT);
         }
         return false;
     }
