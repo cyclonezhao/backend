@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.backend.system.basedata.user.dao.mapper.UserMapper">
     <insert id="insert" parameterType="com.backend.system.basedata.user.dao.entity.User">
-        INSERT INTO SYS_USER (ID, NUMBER, NAME) VALUES(#{id}, #{number}, #{name})
+        INSERT INTO basedata_user (ID, NUMBER, NAME) VALUES(#{id}, #{number}, #{name})
     </insert>
     <select id="list" resultType="com.backend.system.basedata.user.dao.entity.User">
-        select ID, NUMBER, NAME from SYS_USER
+        select ID, NUMBER, NAME from basedata_user
     </select>
 </mapper>
