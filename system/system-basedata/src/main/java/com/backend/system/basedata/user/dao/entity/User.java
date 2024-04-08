@@ -1,6 +1,6 @@
 package com.backend.system.basedata.user.dao.entity;
 
-import com.backend.common.base.BaseEntity;
+import com.backend.common.core.BaseEntity;
 import lombok.Data;
 
 @Data

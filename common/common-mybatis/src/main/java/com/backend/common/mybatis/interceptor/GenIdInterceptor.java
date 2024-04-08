@@ -1,6 +1,6 @@
 package com.backend.common.mybatis.interceptor;
 
-import com.backend.common.base.BaseEntity;
+import com.backend.common.core.BaseEntity;
 import com.backend.common.mybatis.mybatisplus.Sequence;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;

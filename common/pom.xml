@@ -12,9 +12,9 @@
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>common-redistemplate</module>
+        <module>common-core</module>
+        <module>common-redis</module>
         <module>common-mybatis</module>
-        <module>common-base</module>
         <module>common-security</module>
     </modules>
 

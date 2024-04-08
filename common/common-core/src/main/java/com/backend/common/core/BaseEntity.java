@@ -1,4 +1,4 @@
-package com.backend.common.base;
+package com.backend.common.core;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.backend.common.redistemplate;
+package com.backend.common.redis;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
