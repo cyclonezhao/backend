@@ -1,3 +1,12 @@
 # 无需登录放行白名单
 ignore:
   whiteList: /*/user/login
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+     

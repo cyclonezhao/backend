@@ -1,3 +1,5 @@
+#JWT access token过期时间 1天
+jwt.accessToken.expireTime: 86400  
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
