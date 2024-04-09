@@ -34,4 +34,12 @@ public class RedisHelper {
     private Object get0(String key) {
         return redisTemplate.opsForValue ( ).get ( key );
     }
+
+    public void delete(String cacheName, String key) {
+        delete0(getCacheKey( cacheName, key ));
+    }
+
+    private void delete0(String key) {
+        redisTemplate.delete ( key );
+    }
 }

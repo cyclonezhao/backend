@@ -1,6 +1,7 @@
 package com.backend.system.gateway.config;
 
 import com.backend.common.security.JWTFilter;
+import com.backend.common.security.JwtAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,8 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.OrServerWebExchangeMatcher;
 
+import javax.annotation.Resource;
+
 import static org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers.pathMatchers;
 
 @EnableWebSecurity  // 有了这个 securityMatcher 才起作用
@@ -21,6 +24,9 @@ public class SecurityConfiguration {
      */
     @Value("${ignore.whiteList}")
     private String whiteList;
+
+    @Resource
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     @RefreshScope
@@ -35,6 +41,9 @@ public class SecurityConfiguration {
                 从而令上面的securityMatcher失效
                  */
                 .addFilterAt ( new JWTFilter(), SecurityWebFiltersOrder.HTTP_BASIC )
+                .exceptionHandling ( )
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and ( )
                 .authorizeExchange ( )
                 .anyExchange ( ).authenticated ( );
         return http.build();

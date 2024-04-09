@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.backend.common.redis.RedisHelper;
 import com.backend.common.security.constant.CacheName;
+import com.backend.common.security.constant.LogicConstant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
 import org.springframework.security.core.Authentication;
@@ -44,7 +45,7 @@ public class JWTFilter implements WebFilter, Ordered {
             }
         }
 
-        boolean isLogin = StrUtil.isNotBlank ( accessToken ) && !accessToken.equals ( "kickOut" );
+        boolean isLogin = StrUtil.isNotBlank ( accessToken ) && !accessToken.equals (LogicConstant.KICK_OUT );
 
         if ( isLogin && this.tokenHelper.validateToken ( token, accessToken ) ) {
             Authentication authentication = this.tokenHelper.getAuthenticationFromToken ( accessToken );
