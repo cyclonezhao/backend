@@ -26,4 +26,12 @@ public class RedisHelper {
     public Boolean expire(String cacheName, String key, long timeout) {
         return redisTemplate.expire ( getCacheKey( cacheName, key ), timeout, TimeUnit.SECONDS );
     }
+
+    public Object get(String cacheName, String key) {
+        return get0(getCacheKey( cacheName, key ));
+    }
+
+    private Object get0(String key) {
+        return redisTemplate.opsForValue ( ).get ( key );
+    }
 }

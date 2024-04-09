@@ -5,6 +5,8 @@ server:
 spring:
   application:
     name: system-gateway # 应用名称
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     nacos:
       discovery:

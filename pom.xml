@@ -25,6 +25,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <jwt.version>3.4.0</jwt.version>
+        <hutool.version>5.7.13</hutool.version>
+        <javax.servlet-ap.version>3.1.0</javax.servlet-ap.version>
         <spring.boot.version>2.5.5</spring.boot.version>
         <spring.plugin.version>2.0.0.RELEASE</spring.plugin.version>
         <spring.cloud.version>2020.0.2</spring.cloud.version>
@@ -79,6 +81,12 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>

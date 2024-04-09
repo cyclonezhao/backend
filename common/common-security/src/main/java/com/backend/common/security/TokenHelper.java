@@ -1,5 +1,6 @@
 package com.backend.common.security;
 
+import cn.hutool.core.util.StrUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -11,14 +12,23 @@ import com.backend.common.security.constant.CacheName;
 import com.backend.common.security.constant.ErrorConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpCookie;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Component
 public class TokenHelper {
+    private static final String TOKEN = "token";
     private static final String SECRET_KEY = "@!^*FSE%32SDF(#$*%$43#$862@KVS@";
 
     @Value("${jwt.accessToken.expireTime}")
@@ -83,5 +93,31 @@ public class TokenHelper {
                 .withClaim ( "username", username )
                 .withExpiresAt ( date )
                 .sign ( algorithm );
+    }
+
+    public String resolveToken(ServerHttpRequest request) {
+        String token0 = request.getQueryParams ( ).getFirst ( TOKEN );
+        String token1 = request.getHeaders ( ).getFirst ( TOKEN );
+        HttpCookie token2 = request.getCookies ( ).getFirst ( TOKEN );
+        if ( StrUtil.isNotBlank ( token0 ) ) {
+            return token0;
+        }
+        if ( StrUtil.isNotBlank ( token1 ) ) {
+            return token1;
+        }
+        if ( token2 != null && StrUtil.isNotBlank ( token2.getValue ( ) ) ) {
+            return token2.getValue ( );
+        }
+        return null;
+    }
+
+    public Authentication getAuthenticationFromToken(String token) {
+        DecodedJWT jwt = JWT.decode ( token );
+        String username = jwt.getClaim ( "username" ).asString ( );
+
+        List<GrantedAuthority> authorities = new ArrayList<>( );
+        User principal = new User( username, "", authorities );
+
+        return new UsernamePasswordAuthenticationToken( principal, token, authorities );
     }
 }

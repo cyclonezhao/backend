@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication
 @EnableDiscoveryClient
+@SpringBootApplication(scanBasePackages = {"com.backend"})
 public class SystemGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run ( SystemGatewayApplication.class, args );
