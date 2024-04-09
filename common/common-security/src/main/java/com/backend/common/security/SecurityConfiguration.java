@@ -1,4 +1,4 @@
-package com.backend.system.gateway.config;
+package com.backend.common.security;
 
 import com.backend.common.security.JWTFilter;
 import com.backend.common.security.JwtAuthenticationEntryPoint;

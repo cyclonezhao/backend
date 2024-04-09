@@ -12,10 +12,6 @@
     <artifactId>system-gateway</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
         <!-- SpringCloud Gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -25,12 +21,6 @@
             <groupId>org.example</groupId>
             <artifactId>common-security</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-<!--        这个不加的话工程起不来-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet-ap.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
