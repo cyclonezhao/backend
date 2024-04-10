@@ -1,6 +1,6 @@
 # 无需登录放行白名单
 ignore:
-  whiteList: /*/user/login
+  whiteList: /doc.html,/*/v2/api-docs,/webjars/**,/swagger-resources/**,/*/user/getCode,/*/user/login
 
 spring:
   cloud:
@@ -9,4 +9,12 @@ spring:
         locator:
           lowerCaseServiceId: true
           enabled: true
+      routes:
+        # 基础资料
+        - id: system-basedata
+          uri: lb://system-basedata
+          predicates:
+            - Path=/system-basedata/**
+          filters:
+            - StripPrefix=1
      
