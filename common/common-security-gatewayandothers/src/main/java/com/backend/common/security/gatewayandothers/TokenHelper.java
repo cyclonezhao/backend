@@ -1,15 +1,15 @@
-package com.backend.common.security;
+package com.backend.common.security.gatewayandothers;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.backend.common.core.CommonException;
 import com.backend.common.redis.RedisHelper;
-import com.backend.common.security.constant.CacheName;
-import com.backend.common.security.constant.ErrorConstant;
+import com.backend.common.security.gatewayandothers.constant.CacheName;
+import com.backend.common.security.gatewayandothers.constant.ErrorConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpCookie;
@@ -21,6 +21,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,12 +47,7 @@ public class TokenHelper {
     public boolean validateToken(String token, String accessToken) {
         String userName = getLoginName ( accessToken );
         try {
-
-            Algorithm algorithm = Algorithm.HMAC256 ( SECRET_KEY );
-            JWTVerifier verifier = JWT.require ( algorithm )
-                    .withClaim ( "username", userName )
-                    .build ( );
-            verifier.verify ( accessToken );
+            validateToken0(userName, accessToken);
             return true;
         } catch (TokenExpiredException e) {
             // token失效，执行刷新操作
@@ -63,6 +60,28 @@ public class TokenHelper {
             log.error(ErrorConstant.LOGIN_ERROR_INCORRECT);
         }
         return false;
+    }
+
+    // TODO 这个方法和上面的区别，后续研究
+    public boolean validateToken(String token) {
+        try {
+            String userName = getLoginName ( token );
+            validateToken0(userName, token);
+            return true;
+        } catch (TokenExpiredException e) {
+            log.error ( ErrorConstant.LOGIN_ERROR_EXPIRED );
+        } catch (Exception e) {
+            log.error ( ErrorConstant.LOGIN_ERROR_INCORRECT );
+        }
+        return false;
+    }
+
+    private void validateToken0(String userName, String token) throws Exception{
+        Algorithm algorithm = Algorithm.HMAC256 ( SECRET_KEY );
+        JWTVerifier verifier = JWT.require ( algorithm )
+                .withClaim ( "username", userName )
+                .build ( );
+        verifier.verify ( token );
     }
 
     /**
@@ -111,13 +130,19 @@ public class TokenHelper {
         return null;
     }
 
-    public Authentication getAuthenticationFromToken(String token) {
-        DecodedJWT jwt = JWT.decode ( token );
-        String username = jwt.getClaim ( "username" ).asString ( );
-
-        List<GrantedAuthority> authorities = new ArrayList<>( );
-        User principal = new User( username, "", authorities );
-
-        return new UsernamePasswordAuthenticationToken( principal, token, authorities );
+    public String resolveToken(HttpServletRequest httpServletRequest) {
+        String token0 = httpServletRequest.getParameter ( TOKEN );
+        String token1 = httpServletRequest.getHeader ( TOKEN );
+        Cookie token2 = ServletUtil.getCookie ( httpServletRequest, TOKEN );
+        if ( StrUtil.isNotBlank ( token0 ) ) {
+            return token0;
+        }
+        if ( StrUtil.isNotBlank ( token1 ) ) {
+            return token1;
+        }
+        if ( token2 != null && StrUtil.isNotBlank ( token2.getValue ( ) ) ) {
+            return token2.getValue ( );
+        }
+        return null;
     }
 }

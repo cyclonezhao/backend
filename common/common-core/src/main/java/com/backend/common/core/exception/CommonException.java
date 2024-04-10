@@ -1,4 +1,4 @@
-package com.backend.common.core;
+package com.backend.common.core.exception;
 
 public class CommonException extends RuntimeException {
     public CommonException() {

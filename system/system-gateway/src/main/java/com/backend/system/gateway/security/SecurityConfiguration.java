@@ -1,7 +1,5 @@
-package com.backend.common.security;
+package com.backend.system.gateway.security;
 
-import com.backend.common.security.JWTFilter;
-import com.backend.common.security.JwtAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;

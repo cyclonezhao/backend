@@ -13,34 +13,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <!--        这个不加的话工程起不来-->
-<!--        java.lang.IllegalStateException: Failed to introspect Class [org...WebSecurityConfiguration] from ClassLoader [sun.misc.Launcher$AppClassLoader@18b4aac2]-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet-ap.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>${jwt.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.example</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>common-security-gatewayandothers</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>common-redis</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+
     </dependencies>
 </project>

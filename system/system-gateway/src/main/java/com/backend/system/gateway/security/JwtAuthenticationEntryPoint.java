@@ -1,10 +1,11 @@
-package com.backend.common.security;
+package com.backend.system.gateway.security;
 
 import cn.hutool.core.util.StrUtil;
 import com.backend.common.redis.RedisHelper;
-import com.backend.common.security.constant.CacheName;
-import com.backend.common.security.constant.ErrorConstant;
-import com.backend.common.security.constant.LogicConstant;
+import com.backend.common.security.gatewayandothers.TokenHelper;
+import com.backend.common.security.gatewayandothers.constant.CacheName;
+import com.backend.common.security.gatewayandothers.constant.ErrorConstant;
+import com.backend.common.security.gatewayandothers.constant.LogicConstant;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

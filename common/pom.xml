@@ -16,6 +16,7 @@
         <module>common-redis</module>
         <module>common-mybatis</module>
         <module>common-security</module>
+        <module>common-security-gatewayandothers</module>
     </modules>
 
 </project>

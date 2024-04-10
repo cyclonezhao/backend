@@ -1,19 +1,26 @@
-package com.backend.common.security;
+package com.backend.system.gateway.security;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.backend.common.redis.RedisHelper;
-import com.backend.common.security.constant.CacheName;
-import com.backend.common.security.constant.LogicConstant;
+import com.backend.common.security.gatewayandothers.TokenHelper;
+import com.backend.common.security.gatewayandothers.constant.CacheName;
+import com.backend.common.security.gatewayandothers.constant.LogicConstant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JWTFilter implements WebFilter, Ordered {
     private TokenHelper tokenHelper = SpringUtil.getBean(TokenHelper.class);
@@ -48,7 +55,11 @@ public class JWTFilter implements WebFilter, Ordered {
         boolean isLogin = StrUtil.isNotBlank ( accessToken ) && !accessToken.equals (LogicConstant.KICK_OUT );
 
         if ( isLogin && this.tokenHelper.validateToken ( token, accessToken ) ) {
-            Authentication authentication = this.tokenHelper.getAuthenticationFromToken ( accessToken );
+            String loginName = this.tokenHelper.getLoginName ( accessToken );
+            List<GrantedAuthority> authorities = new ArrayList<>( );
+            User principal = new User( loginName, "", authorities );
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(principal, token, authorities);
+
             SecurityContextHolder.getContext ( ).setAuthentication ( authentication );
             return chain.filter ( exchange ).contextWrite ( ReactiveSecurityContextHolder.withAuthentication ( authentication ) );
         }
