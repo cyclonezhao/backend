@@ -65,7 +65,7 @@ public class PreAuthorizeFilter extends GenericFilterBean {
                     authorities.add ( new SimpleGrantedAuthority( permission ) );
                 }
                  */
-                authorities.add ( new SimpleGrantedAuthority( "a123456" ) );
+                
 
                 User principal = new User ( loginName, "", authorities );
                 authentication = new UsernamePasswordAuthenticationToken( principal, token, authorities );

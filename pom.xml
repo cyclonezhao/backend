@@ -39,6 +39,8 @@
         <spring.cloud.nacos.config.namespace>backend</spring.cloud.nacos.config.namespace>
         <spring.cloud.nacos.config.file-extension>yml</spring.cloud.nacos.config.file-extension>
         <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
+        <springfox.boot>3.0.0</springfox.boot>
+        <knife4j.version>2.0.8</knife4j.version>
     </properties>
 
     <dependencyManagement>
@@ -74,6 +76,11 @@
                 <version>${spring.cloud.alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox.boot}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
