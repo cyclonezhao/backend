@@ -12,7 +12,7 @@ public class RedisHelper {
     private RedisTemplate redisTemplate;
 
     private String getCacheKey(String cacheName, String key){
-        return String.format ( "%s::%s", cacheName, key );
+        return String.format ( "%s:%s", cacheName, key );
     }
 
     public void set(String cacheName, String key, Object value){

@@ -26,8 +26,7 @@ public class JWTFilter implements WebFilter, Ordered {
     private TokenHelper tokenHelper = SpringUtil.getBean(TokenHelper.class);
     private RedisHelper redisHelper = SpringUtil.getBean(RedisHelper.class);
 
-    @Value("${jwt.accessToken.expireTime}")
-    private long EXPIRE_TIME;
+    private long EXPIRE_TIME = Long.parseLong(SpringUtil.getProperty("jwt.accessToken.expireTime"));
 
     @Override
     public int getOrder() {
