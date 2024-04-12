@@ -23,6 +23,11 @@
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
+            <artifactId>system-basedata-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
             <artifactId>common-security</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

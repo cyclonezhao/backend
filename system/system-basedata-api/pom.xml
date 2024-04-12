@@ -3,24 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>common</artifactId>
+        <artifactId>system</artifactId>
         <groupId>org.example</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-security</artifactId>
+    <artifactId>system-basedata-api</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>common-security-gatewayandothers</artifactId>
+            <artifactId>common-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <!-- SpringCloud Openfeign -->
         <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>system-basedata-api</artifactId>
-            <version>${project.parent.version}</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
 </project>

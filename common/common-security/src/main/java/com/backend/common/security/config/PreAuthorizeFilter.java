@@ -6,6 +6,7 @@ import com.backend.common.redis.RedisHelper;
 import com.backend.common.security.gatewayandothers.TokenHelper;
 import com.backend.common.security.gatewayandothers.constant.CacheName;
 import com.backend.common.security.gatewayandothers.constant.LogicConstant;
+import com.backend.system.basedata.api.feign.PermissionApi;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Filters incoming requests and installs a Spring Security principal if a header corresponding to a valid user is
@@ -58,14 +60,12 @@ public class PreAuthorizeFilter extends GenericFilterBean {
                 List<GrantedAuthority> authorities = new ArrayList<>( );
                 String loginName = this.tokenHelper.getLoginName ( accessToken );
 
-                /* TODO 查询用户拥有的权限
-                Set<String> permissions = SpringUtil.getBean ( IUserApi.class ).getPermissions ( userName );
+                // 查询用户拥有的权限
+                Set<String> permissions = SpringUtil.getBean ( PermissionApi.class ).getPermissionsByLoginName ( loginName );
                 // 添加基于Permission的权限信息
                 for (String permission : permissions) {
                     authorities.add ( new SimpleGrantedAuthority( permission ) );
                 }
-                 */
-                
 
                 User principal = new User ( loginName, "", authorities );
                 authentication = new UsernamePasswordAuthenticationToken( principal, token, authorities );
